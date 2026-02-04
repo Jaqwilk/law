@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Law Exam Master - Interactive Study Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="sun-icon">☀️</span>
+        <span class="moon-icon">🌙</span>
+    </button>
+
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">⚖️</span>
+                    <span class="logo-text">Law Exam Master</span>
+                </div>
+                <p class="tagline">January 2026</p>
+            </div>
+
+            <!-- User Stats -->
+            <div class="user-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">🔥</span>
+                    <span class="stat-value" id="streakCount">0</span>
+                    <span class="stat-label">Day Streak</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">⭐</span>
+                    <span class="stat-value" id="totalPoints">0</span>
+                    <span class="stat-label">Points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">📚</span>
+                    <span class="stat-value" id="cardsLearned">0</span>
+                    <span class="stat-label">Mastered</span>
+                </div>
+            </div>
+
+            <!-- Navigation Menu -->
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </li>
+                <li class="nav-item" data-section="flashcards">
+                    <span class="nav-icon">🃏</span>
+                    <span class="nav-text">Flashcards</span>
+                    <span class="nav-badge" id="dueCards">0</span>
+                </li>
+                <li class="nav-item" data-section="quiz">
+                    <span class="nav-icon">❓</span>
+                    <span class="nav-text">Quiz Mode</span>
+                </li>
+                <li class="nav-item" data-section="learn">
+                    <span class="nav-icon">📖</span>
+                    <span class="nav-text">Learn Topics</span>
+                </li>
+                <li class="nav-item" data-section="mindmaps">
+                    <span class="nav-icon">🧠</span>
+                    <span class="nav-text">Mind Maps</span>
+                </li>
+                <li class="nav-item" data-section="cases">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">Case Studies</span>
+                </li>
+                <li class="nav-item" data-section="progress">
+                    <span class="nav-icon">📈</span>
+                    <span class="nav-text">Progress</span>
+                </li>
+            </ul>
+
+            <!-- Daily Goal -->
+            <div class="daily-goal">
+                <h4>Daily Goal</h4>
+                <div class="goal-progress">
+                    <div class="goal-bar">
+                        <div class="goal-fill" id="goalFill" style="width: 0%"></div>
+                    </div>
+                    <span class="goal-text"><span id="goalCurrent">0</span>/<span id="goalTarget">20</span> cards</span>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section class="content-section active" id="dashboard">
+                <div class="section-header">
+                    <h1>Welcome Back! 👋</h1>
+                    <p class="subtitle">Ready to master Principles of Law?</p>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="action-card primary" onclick="startQuickReview()">
+                        <span class="action-icon">⚡</span>
+                        <span class="action-title">Quick Review</span>
+                        <span class="action-desc">Review due flashcards</span>
+                    </button>
+                    <button class="action-card" onclick="startQuiz()">
+                        <span class="action-icon">🎯</span>
+                        <span class="action-title">Practice Quiz</span>
+                        <span class="action-desc">Test your knowledge</span>
+                    </button>
+                    <button class="action-card" onclick="showWeakAreas()">
+                        <span class="action-icon">💪</span>
+                        <span class="action-title">Weak Areas</span>
+                        <span class="action-desc">Focus on trouble spots</span>
+                    </button>
+                    <button class="action-card" onclick="showRandomCase()">
+                        <span class="action-icon">📚</span>
+                        <span class="action-title">Random Case</span>
+                        <span class="action-desc">Learn a legal case</span>
+                    </button>
+                </div>
+
+                <!-- Today's Progress -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>📅 Today's Study</h3>
+                        <div class="today-stats">
+                            <div class="today-stat">
+                                <span class="big-number" id="todayCards">0</span>
+                                <span class="stat-desc">Cards Reviewed</span>
+                            </div>
+                            <div class="today-stat">
+                                <span class="big-number" id="todayAccuracy">0%</span>
+                                <span class="stat-desc">Accuracy</span>
+                            </div>
+                            <div class="today-stat">
+                                <span class="big-number" id="todayTime">0m</span>
+                                <span class="stat-desc">Time Spent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>🎯 Topic Mastery</h3>
+                        <div class="mastery-list" id="masteryList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>🏆 Achievements</h3>
+                        <div class="achievements-grid" id="achievementsGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>💡 Study Tip</h3>
+                        <div class="study-tip" id="studyTip">
+                            <p class="tip-text"></p>
+                            <p class="tip-source"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Flashcards Section -->
+            <section class="content-section" id="flashcards">
+                <div class="section-header">
+                    <h1>🃏 Flashcards</h1>
+                    <p class="subtitle">Spaced repetition for long-term memory</p>
+                </div>
+
+                <!-- Topic Filter -->
+                <div class="topic-filter">
+                    <button class="filter-btn active" data-topic="all">All Topics</button>
+                    <button class="filter-btn" data-topic="system">System of Law</button>
+                    <button class="filter-btn" data-topic="copyright">Copyright</button>
+                    <button class="filter-btn" data-topic="industrial">Industrial Property</button>
+                    <button class="filter-btn" data-topic="cartels">Cartels</button>
+                    <button class="filter-btn" data-topic="dominance">Dominant Position</button>
+                    <button class="filter-btn" data-topic="ai">AI Act</button>
+                    <button class="filter-btn" data-topic="dsa">DSA</button>
+                    <button class="filter-btn" data-topic="company">Company Law</button>
+                    <button class="filter-btn" data-topic="civil">Civil Law</button>
+                </div>
+
+                <!-- Flashcard Container -->
+                <div class="flashcard-container">
+                    <div class="flashcard-progress">
+                        <span id="cardProgress">1/81</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="cardProgressFill"></div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <div class="flashcard-front">
+                                <div class="card-topic" id="cardTopic">Topic</div>
+                                <div class="card-question" id="cardQuestion">Question will appear here</div>
+                                <div class="card-hint">Click or press Space to flip</div>
+                            </div>
+                            <div class="flashcard-back">
+                                <div class="card-answer" id="cardAnswer">Answer will appear here</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flashcard-controls">
+                        <p class="rating-prompt">How well did you know this?</p>
+                        <div class="rating-buttons">
+                            <button class="rating-btn again" onclick="rateCard(0)">
+                                <span class="rating-icon">❌</span>
+                                <span class="rating-text">Again</span>
+                                <span class="rating-time">&lt;1min</span>
+                            </button>
+                            <button class="rating-btn hard" onclick="rateCard(1)">
+                                <span class="rating-icon">😓</span>
+                                <span class="rating-text">Hard</span>
+                                <span class="rating-time">10min</span>
+                            </button>
+                            <button class="rating-btn good" onclick="rateCard(2)">
+                                <span class="rating-icon">👍</span>
+                                <span class="rating-text">Good</span>
+                                <span class="rating-time">1day</span>
+                            </button>
+                            <button class="rating-btn easy" onclick="rateCard(3)">
+                                <span class="rating-icon">🎯</span>
+                                <span class="rating-text">Easy</span>
+                                <span class="rating-time">4days</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leitner Box Visualization -->
+                <div class="leitner-boxes">
+                    <h3>📦 Spaced Repetition Boxes</h3>
+                    <div class="boxes-container">
+                        <div class="leitner-box" data-box="1">
+                            <span class="box-label">Box 1</span>
+                            <span class="box-count" id="box1Count">0</span>
+                            <span class="box-interval">Every day</span>
+                        </div>
+                        <div class="leitner-box" data-box="2">
+                            <span class="box-label">Box 2</span>
+                            <span class="box-count" id="box2Count">0</span>
+                            <span class="box-interval">Every 2 days</span>
+                        </div>
+                        <div class="leitner-box" data-box="3">
+                            <span class="box-label">Box 3</span>
+                            <span class="box-count" id="box3Count">0</span>
+                            <span class="box-interval">Every 4 days</span>
+                        </div>
+                        <div class="leitner-box" data-box="4">
+                            <span class="box-label">Box 4</span>
+                            <span class="box-count" id="box4Count">0</span>
+                            <span class="box-interval">Every week</span>
+                        </div>
+                        <div class="leitner-box" data-box="5">
+                            <span class="box-label">Box 5</span>
+                            <span class="box-count" id="box5Count">0</span>
+                            <span class="box-interval">Mastered! 🎉</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="content-section" id="quiz">
+                <div class="section-header">
+                    <h1>❓ Quiz Mode</h1>
+                    <p class="subtitle">Test your knowledge with active recall</p>
+                </div>
+
+                <!-- Quiz Setup -->
+                <div class="quiz-setup" id="quizSetup">
+                    <div class="quiz-options">
+                        <div class="option-group">
+                            <h3>Select Topics</h3>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="all" checked> All Topics
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="system"> System of Law
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="copyright"> Copyright
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="industrial"> Industrial Property
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="cartels"> Cartels
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="dominance"> Dominant Position
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="ai"> AI Act
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="dsa"> DSA
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="company"> Company Law
+                                </label>
+                                <label class="checkbox-item">
+                                    <input type="checkbox" value="civil"> Civil Law
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <h3>Number of Questions</h3>
+                            <div class="number-selector">
+                                <button class="num-btn" data-num="10">10</button>
+                                <button class="num-btn active" data-num="20">20</button>
+                                <button class="num-btn" data-num="30">30</button>
+                                <button class="num-btn" data-num="50">50</button>
+                            </div>
+                        </div>
+
+                        <div class="option-group">
+                            <h3>Quiz Type</h3>
+                            <div class="type-selector">
+                                <button class="type-btn active" data-type="multiple">Multiple Choice</button>
+                                <button class="type-btn" data-type="truefalse">True/False</button>
+                                <button class="type-btn" data-type="mixed">Mixed</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="start-quiz-btn" onclick="startQuizSession()">
+                        <span>Start Quiz</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </div>
+
+                <!-- Quiz In Progress -->
+                <div class="quiz-active" id="quizActive" style="display: none;">
+                    <div class="quiz-header">
+                        <div class="quiz-timer" id="quizTimer">00:00</div>
+                        <div class="quiz-progress-info">
+                            Question <span id="currentQ">1</span> of <span id="totalQ">20</span>
+                        </div>
+                        <div class="quiz-score">Score: <span id="quizScore">0</span></div>
+                    </div>
+
+                    <div class="quiz-question-container">
+                        <div class="question-topic" id="quizTopic">Topic</div>
+                        <div class="question-text" id="quizQuestion">Question text here</div>
+
+                        <div class="quiz-options-container" id="quizOptions">
+                            <!-- Options populated by JS -->
+                        </div>
+
+                        <div class="quiz-feedback" id="quizFeedback" style="display: none;">
+                            <div class="feedback-icon"></div>
+                            <div class="feedback-text"></div>
+                            <div class="feedback-explanation"></div>
+                        </div>
+                    </div>
+
+                    <div class="quiz-nav">
+                        <button class="quiz-nav-btn" id="nextQuestionBtn" onclick="nextQuestion()" style="display: none;">
+                            Next Question →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quiz Results -->
+                <div class="quiz-results" id="quizResults" style="display: none;">
+                    <div class="results-header">
+                        <div class="results-score-circle">
+                            <span class="score-number" id="finalScore">0</span>
+                            <span class="score-percent">%</span>
+                        </div>
+                        <h2 id="resultsMessage">Great job!</h2>
+                    </div>
+
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <span class="stat-num" id="correctCount">0</span>
+                            <span class="stat-label">Correct</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="stat-num" id="incorrectCount">0</span>
+                            <span class="stat-label">Incorrect</span>
+                        </div>
+                        <div class="result-stat">
+                            <span class="stat-num" id="quizTimeSpent">0:00</span>
+                            <span class="stat-label">Time</span>
+                        </div>
+                    </div>
+
+                    <div class="results-breakdown" id="resultsBreakdown">
+                        <!-- Topic breakdown populated by JS -->
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="action-btn primary" onclick="reviewMistakes()">Review Mistakes</button>
+                        <button class="action-btn" onclick="retakeQuiz()">Retake Quiz</button>
+                        <button class="action-btn" onclick="newQuiz()">New Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Learn Topics Section -->
+            <section class="content-section" id="learn">
+                <div class="section-header">
+                    <h1>📖 Learn Topics</h1>
+                    <p class="subtitle">Master each topic with structured learning</p>
+                </div>
+
+                <div class="topics-grid" id="topicsGrid">
+                    <!-- Topics populated by JS -->
+                </div>
+
+                <!-- Topic Content Modal -->
+                <div class="topic-modal" id="topicModal">
+                    <div class="modal-content">
+                        <button class="modal-close" onclick="closeTopicModal()">&times;</button>
+                        <div class="modal-header" id="modalHeader">
+                            <h2 id="modalTitle">Topic Title</h2>
+                            <div class="modal-progress">
+                                <div class="modal-progress-bar">
+                                    <div class="modal-progress-fill" id="modalProgressFill"></div>
+                                </div>
+                                <span id="modalProgressText">0% Complete</span>
+                            </div>
+                        </div>
+                        <div class="modal-body" id="modalBody">
+                            <!-- Content populated by JS -->
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-btn" onclick="prevLearnSection()">← Previous</button>
+                            <button class="modal-btn primary" onclick="nextLearnSection()">Next →</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mind Maps Section -->
+            <section class="content-section" id="mindmaps">
+                <div class="section-header">
+                    <h1>🧠 Mind Maps</h1>
+                    <p class="subtitle">Visual learning for better understanding</p>
+                </div>
+
+                <div class="mindmap-selector">
+                    <button class="mindmap-btn active" data-map="legal-systems">Legal Systems</button>
+                    <button class="mindmap-btn" data-map="ip">Intellectual Property</button>
+                    <button class="mindmap-btn" data-map="competition">Competition Law</button>
+                    <button class="mindmap-btn" data-map="ai-dsa">AI Act & DSA</button>
+                    <button class="mindmap-btn" data-map="company">Company Law</button>
+                    <button class="mindmap-btn" data-map="civil">Civil Law</button>
+                </div>
+
+                <div class="mindmap-container" id="mindmapContainer">
+                    <!-- Mind map SVG rendered here -->
+                </div>
+
+                <div class="mindmap-legend">
+                    <div class="legend-item"><span class="legend-color main"></span> Main Concept</div>
+                    <div class="legend-item"><span class="legend-color sub"></span> Sub-topic</div>
+                    <div class="legend-item"><span class="legend-color detail"></span> Detail</div>
+                </div>
+            </section>
+
+            <!-- Case Studies Section -->
+            <section class="content-section" id="cases">
+                <div class="section-header">
+                    <h1>📋 Case Studies</h1>
+                    <p class="subtitle">Learn through real legal cases</p>
+                </div>
+
+                <div class="cases-grid" id="casesGrid">
+                    <!-- Cases populated by JS -->
+                </div>
+
+                <!-- Case Detail Modal -->
+                <div class="case-modal" id="caseModal">
+                    <div class="case-modal-content">
+                        <button class="modal-close" onclick="closeCaseModal()">&times;</button>
+                        <div class="case-header" id="caseHeader">
+                            <span class="case-icon">⚖️</span>
+                            <h2 id="caseTitle">Case Title</h2>
+                            <span class="case-category" id="caseCategory">Category</span>
+                        </div>
+                        <div class="case-body" id="caseBody">
+                            <!-- Case content populated by JS -->
+                        </div>
+                        <div class="case-test">
+                            <h3>Test Your Understanding</h3>
+                            <div id="caseQuestions">
+                                <!-- Questions populated by JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Progress Section -->
+            <section class="content-section" id="progress">
+                <div class="section-header">
+                    <h1>📈 Your Progress</h1>
+                    <p class="subtitle">Track your learning journey</p>
+                </div>
+
+                <div class="progress-overview">
+                    <div class="progress-card large">
+                        <h3>Overall Mastery</h3>
+                        <div class="mastery-circle">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="mastery-bg" cx="50" cy="50" r="45"/>
+                                <circle class="mastery-fill" cx="50" cy="50" r="45" id="masteryCircle"/>
+                            </svg>
+                            <span class="mastery-percent" id="overallMastery">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <h3>Study Streak</h3>
+                        <div class="streak-display">
+                            <span class="streak-fire">🔥</span>
+                            <span class="streak-number" id="streakDisplay">0</span>
+                            <span class="streak-text">days</span>
+                        </div>
+                        <div class="streak-calendar" id="streakCalendar">
+                            <!-- Calendar populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="progress-card">
+                        <h3>Time Studied</h3>
+                        <div class="time-display">
+                            <span class="time-number" id="totalTimeStudied">0</span>
+                            <span class="time-unit">hours</span>
+                        </div>
+                        <div class="time-chart" id="timeChart">
+                            <!-- Chart populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="topic-progress">
+                    <h3>Topic Breakdown</h3>
+                    <div class="topic-bars" id="topicBars">
+                        <!-- Topic progress bars populated by JS -->
+                    </div>
+                </div>
+
+                <div class="achievements-section">
+                    <h3>🏆 Achievements</h3>
+                    <div class="all-achievements" id="allAchievements">
+                        <!-- Achievements populated by JS -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Pomodoro Timer Widget -->
+    <div class="pomodoro-widget" id="pomodoroWidget">
+        <div class="pomodoro-header">
+            <span>🍅 Pomodoro</span>
+            <button class="pomodoro-toggle" onclick="togglePomodoro()">−</button>
+        </div>
+        <div class="pomodoro-body">
+            <div class="pomodoro-timer" id="pomodoroTimer">25:00</div>
+            <div class="pomodoro-controls">
+                <button onclick="startPomodoro()">▶️</button>
+                <button onclick="pausePomodoro()">⏸️</button>
+                <button onclick="resetPomodoro()">🔄</button>
+            </div>
+            <div class="pomodoro-sessions">
+                Session: <span id="pomodoroSession">1</span>/4
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
