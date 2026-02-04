@@ -11,62 +11,74 @@ const TOPICS = {
     system_of_law: {
         name: 'System of Law',
         icon: '⚖️',
-        color: '#4F46E5'
+        color: '#4F46E5',
+        description: 'Legal systems, interpretation methods, and fundamental principles'
     },
     copyright: {
         name: 'Copyright Law',
         icon: '©️',
-        color: '#7C3AED'
+        color: '#7C3AED',
+        description: 'Protection of creative works, moral and economic rights'
     },
     industrial_property: {
         name: 'Industrial Property',
         icon: '⚙️',
-        color: '#2563EB'
+        color: '#2563EB',
+        description: 'Patents, trademarks, designs, and geographical indications'
     },
     cartels: {
         name: 'Competition Law - Cartels',
         icon: '🤝',
-        color: '#DC2626'
+        color: '#DC2626',
+        description: 'Agreements restricting competition under Article 101 TFEU'
     },
     dominant_position: {
         name: 'Abuse of Dominant Position',
         icon: '👑',
-        color: '#EA580C'
+        color: '#EA580C',
+        description: 'Market dominance and its abuse under Article 102 TFEU'
     },
     unfair_competition: {
         name: 'Unfair Competition & Influencers',
         icon: '📱',
-        color: '#DB2777'
+        color: '#DB2777',
+        description: 'Advertising regulations, influencers, and unfair practices'
     },
     ai_act: {
         name: 'AI Act',
         icon: '🤖',
-        color: '#059669'
+        color: '#059669',
+        description: 'EU regulation of artificial intelligence systems'
     },
     dsa: {
         name: 'Digital Services Act',
         icon: '🌐',
-        color: '#0891B2'
+        color: '#0891B2',
+        description: 'Regulation of online platforms and digital services'
     },
     company_law: {
         name: 'Company Law',
         icon: '🏢',
-        color: '#7C2D12'
+        color: '#7C2D12',
+        description: 'Business entities, governance, and corporate structures'
     },
     uber_case: {
         name: 'The Case of Uber',
         icon: '🚗',
-        color: '#4338CA'
+        color: '#4338CA',
+        description: 'Employment vs independent contractor status'
     },
     starting_business: {
         name: 'Starting Business',
         icon: '🚀',
-        color: '#15803D'
+        color: '#15803D',
+        description: 'Registration, permits, and business authorization'
     },
     civil_law: {
         name: 'Civil Law',
         icon: '📜',
-        color: '#6B7280'
+        color: '#6B7280',
+        description: 'Contracts, property rights, and civil obligations'
     }
 };
 
@@ -1418,13 +1430,13 @@ const CASES = [
 // ========================================
 
 const MIND_MAPS = {
-    legal_systems: {
+    'legal-systems': {
         center: 'Legal Systems',
         branches: [
             {
-                label: 'Common Law',
+                name: 'Common Law',
                 color: '#4F46E5',
-                items: [
+                children: [
                     'Judge decisions = law',
                     'Precedent (stare decisis)',
                     'Case-by-case development',
@@ -1432,9 +1444,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Civil Law',
+                name: 'Civil Law',
                 color: '#7C3AED',
-                items: [
+                children: [
                     'Codified statutes',
                     'Judges apply law',
                     'Deductive reasoning',
@@ -1442,9 +1454,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Monist vs Dualist',
+                name: 'Monist vs Dualist',
                 color: '#2563EB',
-                items: [
+                children: [
                     'Monist: Int\'l law automatic',
                     'Dualist: Need transformation',
                     'Poland: Modified monist'
@@ -1452,13 +1464,13 @@ const MIND_MAPS = {
             }
         ]
     },
-    copyright: {
+    'copyright': {
         center: 'Copyright Law',
         branches: [
             {
-                label: 'Moral Rights',
+                name: 'Moral Rights',
                 color: '#7C3AED',
-                items: [
+                children: [
                     'NO time limit',
                     'Inalienable',
                     'Attribution',
@@ -1466,9 +1478,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Economic Rights',
+                name: 'Economic Rights',
                 color: '#DB2777',
-                items: [
+                children: [
                     'Life + 70 years',
                     'Transferable',
                     'Reproduction',
@@ -1476,9 +1488,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Key Concepts',
+                name: 'Key Concepts',
                 color: '#059669',
-                items: [
+                children: [
                     'Established = protected',
                     'Exhaustion after 1st sale',
                     'Public domain',
@@ -1487,13 +1499,13 @@ const MIND_MAPS = {
             }
         ]
     },
-    competition_law: {
+    'competition-law': {
         center: 'Competition Law',
         branches: [
             {
-                label: 'Cartels (Art 101)',
+                name: 'Cartels (Art 101)',
                 color: '#DC2626',
-                items: [
+                children: [
                     'Agreements restricting competition',
                     'Price fixing',
                     'Market sharing',
@@ -1501,9 +1513,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Dominant Position (Art 102)',
+                name: 'Dominant Position (Art 102)',
                 color: '#EA580C',
-                items: [
+                children: [
                     'Having = OK',
                     'Abuse = prohibited',
                     '>40% = presumption',
@@ -1511,9 +1523,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Types of Abuse',
+                name: 'Types of Abuse',
                 color: '#7C2D12',
-                items: [
+                children: [
                     'Unfair pricing',
                     'Loyalty rebates',
                     'Tied transactions',
@@ -1522,13 +1534,13 @@ const MIND_MAPS = {
             }
         ]
     },
-    company_structure: {
+    'company-structure': {
         center: 'Company Law',
         branches: [
             {
-                label: 'Sole Proprietorship',
+                name: 'Sole Proprietorship',
                 color: '#15803D',
-                items: [
+                children: [
                     'Unlimited liability',
                     'Simple structure',
                     'CEIDG registration',
@@ -1536,9 +1548,9 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'Joint-Stock Company',
+                name: 'Joint-Stock Company',
                 color: '#7C2D12',
-                items: [
+                children: [
                     'Limited liability',
                     'Min 100,000 PLN',
                     'Profit per share',
@@ -1546,13 +1558,753 @@ const MIND_MAPS = {
                 ]
             },
             {
-                label: 'JSC Authorities',
+                name: 'JSC Authorities',
                 color: '#4338CA',
-                items: [
+                children: [
                     'General Assembly',
                     'Management Board',
                     'Supervisory Board'
                 ]
+            }
+        ]
+    },
+    'ip': {
+        center: 'Intellectual Property',
+        branches: [
+            {
+                name: 'Copyright',
+                color: '#7C3AED',
+                children: [
+                    'Moral rights (∞)',
+                    'Economic rights (Life+70)',
+                    'Established = protected',
+                    'Exhaustion after 1st sale'
+                ]
+            },
+            {
+                name: 'Industrial Property',
+                color: '#2563EB',
+                children: [
+                    'Patent (20 years)',
+                    'Trademark (10 years, renewable)',
+                    'Industrial Design (25 years)',
+                    'Utility Model (10 years)'
+                ]
+            },
+            {
+                name: 'Special Rights',
+                color: '#059669',
+                children: [
+                    'Geographical Indications',
+                    'SPC for pharmaceuticals',
+                    'Trade secrets',
+                    'Know-how'
+                ]
+            }
+        ]
+    },
+    'competition': {
+        center: 'Competition Law',
+        branches: [
+            {
+                name: 'Cartels (Art 101)',
+                color: '#DC2626',
+                children: [
+                    'Horizontal agreements',
+                    'Price fixing prohibited',
+                    'Market sharing prohibited',
+                    'De minimis <5%'
+                ]
+            },
+            {
+                name: 'Dominance (Art 102)',
+                color: '#EA580C',
+                children: [
+                    'Having = OK',
+                    'Abuse = prohibited',
+                    '>40% = presumption',
+                    'Special responsibility'
+                ]
+            },
+            {
+                name: 'Enforcement',
+                color: '#7C2D12',
+                children: [
+                    'European Commission',
+                    'National authorities',
+                    'Fines up to 10% turnover',
+                    'Private damages'
+                ]
+            }
+        ]
+    },
+    'ai-dsa': {
+        center: 'AI Act & DSA',
+        branches: [
+            {
+                name: 'AI Act - Prohibited',
+                color: '#DC2626',
+                children: [
+                    'Social scoring',
+                    'Emotion reading (workplace)',
+                    'Real-time biometrics (public)',
+                    'Subliminal manipulation'
+                ]
+            },
+            {
+                name: 'AI Act - High-Risk',
+                color: '#EA580C',
+                children: [
+                    'Critical infrastructure',
+                    'Education/employment',
+                    'Essential services',
+                    'Law enforcement'
+                ]
+            },
+            {
+                name: 'DSA',
+                color: '#0891B2',
+                children: [
+                    'VLOP ≥45M users',
+                    'Content moderation',
+                    'Transparency obligations',
+                    'Risk assessments'
+                ]
+            }
+        ]
+    },
+    'company': {
+        center: 'Company Law',
+        branches: [
+            {
+                name: 'JSC Structure',
+                color: '#7C2D12',
+                children: [
+                    'General Assembly',
+                    'Management Board',
+                    'Supervisory Board',
+                    'Min capital 100k PLN'
+                ]
+            },
+            {
+                name: 'Shares',
+                color: '#4338CA',
+                children: [
+                    'Registered shares',
+                    'Bearer shares',
+                    'Preferred shares',
+                    'Profit per share'
+                ]
+            },
+            {
+                name: 'Liability',
+                color: '#15803D',
+                children: [
+                    'JSC: Limited',
+                    'Sole: Unlimited',
+                    'Partnership: Varies',
+                    'Professional: Protected'
+                ]
+            }
+        ]
+    },
+    'civil': {
+        center: 'Civil Law',
+        branches: [
+            {
+                name: 'Contracts',
+                color: '#6B7280',
+                children: [
+                    'Intention > literal wording',
+                    'Real estate = notarial form',
+                    'Partial invalidity possible',
+                    'Customs play a role'
+                ]
+            },
+            {
+                name: 'Interpretation',
+                color: '#059669',
+                children: [
+                    'Civil law = expansive',
+                    'Admin law = restrictive',
+                    'Parties in equality',
+                    'Good faith principle'
+                ]
+            },
+            {
+                name: 'Limitations',
+                color: '#EA580C',
+                children: [
+                    'Tax claims: 5 years',
+                    'Employment: 3 years',
+                    'General: 6 years',
+                    'Tort: 3 years from knowledge'
+                ]
+            }
+        ]
+    }
+};
+
+// ========================================
+// LEARN CONTENT - STRUCTURED LESSONS
+// ========================================
+
+const LEARN_CONTENT = {
+    system_of_law: {
+        sections: [
+            {
+                title: '🌍 Legal Systems Overview',
+                content: `
+                    <h4>Two Main Legal Traditions</h4>
+                    <div class="comparison-table">
+                        <table>
+                            <tr>
+                                <th>Feature</th>
+                                <th>Common Law (Anglo-Saxon)</th>
+                                <th>Civil Law (Continental)</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Source of Law</strong></td>
+                                <td>Case law (judicial precedents)</td>
+                                <td>Codified statutes and codes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Role of Judges</strong></td>
+                                <td>✅ Decisions HAVE the force of law</td>
+                                <td>❌ Decisions do NOT have force of law</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Key Principle</strong></td>
+                                <td>Stare decisis (precedent)</td>
+                                <td>Deductive reasoning from codes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Examples</strong></td>
+                                <td>UK, US, Commonwealth</td>
+                                <td>Most of Europe, Poland</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="key-point">
+                        <strong>🎯 EXAM KEY:</strong> In the Anglo-Saxon system, judges' decisions have the value of law through the doctrine of precedent.
+                    </div>
+                `
+            },
+            {
+                title: '⚖️ International Law Integration',
+                content: `
+                    <h4>Monist vs Dualist Systems</h4>
+                    <div class="info-box">
+                        <h5>MONIST System</h5>
+                        <p>International and domestic law form <strong>ONE legal system</strong></p>
+                        <p>✅ International law automatically applies domestically</p>
+                    </div>
+                    <div class="info-box">
+                        <h5>DUALIST System</h5>
+                        <p>Two <strong>SEPARATE systems</strong></p>
+                        <p>❌ International law must be transformed into domestic law</p>
+                    </div>
+                    <div class="key-point">
+                        <strong>Poland's Approach:</strong> Modified monist system<br>
+                        International agreements ratified with parliamentary consent have <strong>PRIORITY BEFORE STATUTES</strong><br>
+                        (Constitution remains supreme)
+                    </div>
+                `
+            },
+            {
+                title: '📜 Interpretation Methods',
+                content: `
+                    <h4>Civil Law vs Administrative Law Methods</h4>
+                    <table>
+                        <tr>
+                            <th>Method</th>
+                            <th>Interpretation</th>
+                            <th>Used In</th>
+                            <th>Reason</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Civil Law</strong></td>
+                            <td>✅ EXPANSIVE</td>
+                            <td>Contracts, private law</td>
+                            <td>Equality of parties</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Administrative Law</strong></td>
+                            <td>❌ RESTRICTIVE only</td>
+                            <td>Criminal, tax, admin law</td>
+                            <td>State vs individual inequality</td>
+                        </tr>
+                    </table>
+                    <div class="example-box">
+                        <strong>Living Constitution</strong> = Opposite of positive law interpretation<br>
+                        Allows deriving meaning from CURRENT circumstances, not original intent
+                    </div>
+                `
+            },
+            {
+                title: '⚡ Key Principles',
+                content: `
+                    <h4>Essential Legal Principles</h4>
+                    <ul class="principle-list">
+                        <li><strong>Lex retro non agit</strong> - Law does not act retroactively</li>
+                        <li><strong>Lex superior derogat legi inferiori</strong> - Higher law prevails</li>
+                        <li><strong>Lex posterior derogat priori</strong> - Later law prevails</li>
+                        <li><strong>Nulla poena sine lege</strong> - No punishment without law</li>
+                        <li><strong>In dubio pro reo</strong> - When in doubt, for the accused</li>
+                    </ul>
+                    <div class="key-point">
+                        <h5>Legal vs Factual Presumption</h5>
+                        <p><strong>Legal:</strong> Required by LAW; shifts burden of proof</p>
+                        <p><strong>Factual:</strong> Based on LOGIC and evidence</p>
+                        <p>Both can be rebutted by proof to the contrary</p>
+                    </div>
+                `
+            }
+        ]
+    },
+    copyright: {
+        sections: [
+            {
+                title: '©️ Copyright Basics',
+                content: `
+                    <h4>When is a Work Protected?</h4>
+                    <div class="key-point">
+                        A work is protected <strong>since being established</strong> - when it takes a <strong>RECOGNIZABLE FORM</strong>
+                        <br><br>
+                        ✅ Even if incomplete<br>
+                        ✅ No formalities required<br>
+                        ✅ No registration needed
+                    </div>
+                    <div class="example-box">
+                        <strong>Example:</strong> An unfinished bachelor thesis with identifiable creative content is already protected!
+                    </div>
+                `
+            },
+            {
+                title: '⏰ Duration of Rights',
+                content: `
+                    <h4>Two Types of Copyright Rights</h4>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Duration</th>
+                            <th>Transferable?</th>
+                            <th>Content</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Moral Rights</strong></td>
+                            <td>∞ NO TIME LIMIT</td>
+                            <td>❌ INALIENABLE</td>
+                            <td>Authorship, integrity, first publication</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Economic Rights</strong></td>
+                            <td>Life + 70 years</td>
+                            <td>✅ Transferable</td>
+                            <td>Use, reproduce, distribute, remuneration</td>
+                        </tr>
+                    </table>
+                    <div class="warning-box">
+                        ⚠️ Even if a work is in PUBLIC DOMAIN, you must still CREDIT THE AUTHOR!<br>
+                        Moral rights persist even after economic rights expire.
+                    </div>
+                `
+            },
+            {
+                title: '💰 Exhaustion of Rights',
+                content: `
+                    <h4>First Sale Doctrine</h4>
+                    <div class="info-box">
+                        A copyright owner's right to control copies <strong>EXHAUSTS on the FIRST SALE</strong> with their consent
+                    </div>
+                    <p><strong>What this means:</strong></p>
+                    <ul>
+                        <li>After first legitimate sale, owner cannot prevent resale</li>
+                        <li>Purchaser can resell their copy</li>
+                        <li>Cannot control secondary market</li>
+                    </ul>
+                    <div class="example-box">
+                        You buy a book → You can resell it<br>
+                        Publisher cannot stop you!
+                    </div>
+                `
+            },
+            {
+                title: '📧 Special Cases',
+                content: `
+                    <h4>Publishing Letters</h4>
+                    <p>To publish a letter, you need consent from:</p>
+                    <ol>
+                        <li><strong>The AUTHOR</strong> (writer) - for copyright</li>
+                        <li><strong>The RECIPIENT</strong> - for privacy rights</li>
+                        <li><strong>Heirs</strong> if author is deceased</li>
+                    </ol>
+                    <h4>Xerox Operators</h4>
+                    <p>Must pay fees <strong>up to 3% OF PROCEEDS</strong> to collective management organizations</p>
+                    <p>Distributed <strong>50/50 between authors and publishers</strong></p>
+                `
+            }
+        ]
+    },
+    industrial_property: {
+        sections: [
+            {
+                title: '⚙️ Types of Protection',
+                content: `
+                    <h4>Duration of Industrial Property Rights</h4>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Duration</th>
+                            <th>Renewable?</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Patent</strong></td>
+                            <td>20 years</td>
+                            <td>❌ No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Trademark</strong></td>
+                            <td>10 years</td>
+                            <td>✅ Indefinitely</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Industrial Design</strong></td>
+                            <td>Up to 25 years</td>
+                            <td>✅ Yes (5-year terms)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Utility Model</strong></td>
+                            <td>10 years</td>
+                            <td>❌ No</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: '🍾 Geographical Indications',
+                content: `
+                    <h4>Protected Names: The Champagne Example</h4>
+                    <div class="key-point">
+                        <strong>Q:</strong> Can a Spanish producer call their sparkling wine "Champagne"?<br>
+                        <strong>A:</strong> ❌ NO!
+                    </div>
+                    <p><strong>Why?</strong> Champagne is a <strong>PROTECTED GEOGRAPHICAL INDICATION</strong></p>
+                    <p>Can only be used for:</p>
+                    <ul>
+                        <li>Sparkling wine from Champagne region of France</li>
+                        <li>Made using traditional méthode champenoise</li>
+                        <li>Meeting specific quality standards</li>
+                    </ul>
+                    <div class="example-box">
+                        Spanish sparkling wine = <strong>Cava</strong><br>
+                        Italian sparkling wine = <strong>Prosecco</strong><br>
+                        German sparkling wine = <strong>Sekt</strong>
+                    </div>
+                `
+            },
+            {
+                title: '🔬 Patent Requirements',
+                content: `
+                    <h4>Novelty Standard</h4>
+                    <div class="key-point">
+                        To be "new," a patent must not be state of the art to an <strong>EXPERT</strong> (person skilled in the art)
+                        <br>NOT an ordinary person!
+                    </div>
+                    <h4>Supplementary Protection Certificate (SPC)</h4>
+                    <p>Extends patent duration for:</p>
+                    <ul>
+                        <li>Pharmaceutical products</li>
+                        <li>Plant protection products</li>
+                    </ul>
+                    <p><strong>Purpose:</strong> Compensate for time lost during regulatory approval</p>
+                    <p><strong>Extension:</strong> Up to 5 additional years</p>
+                `
+            },
+            {
+                title: '⚠️ Patent Abuse',
+                content: `
+                    <h4>What Can Be Done About Patent Abuse?</h4>
+                    <ol>
+                        <li><strong>COMPULSORY LICENSING</strong>
+                            <p>Government authorizes third parties to use patent</p>
+                        </li>
+                        <li><strong>ANTITRUST ENFORCEMENT</strong>
+                            <p>Competition authorities intervene</p>
+                        </li>
+                        <li><strong>PATENT REVOCATION</strong>
+                            <p>In extreme cases</p>
+                        </li>
+                    </ol>
+                `
+            }
+        ]
+    },
+    cartels: {
+        sections: [
+            {
+                title: '🤝 What is a Cartel?',
+                content: `
+                    <h4>Definition (Article 101 TFEU)</h4>
+                    <div class="key-point">
+                        An <strong>AGREEMENT between undertakings</strong>, decisions by associations, or <strong>CONCERTED PRACTICES</strong> that:
+                        <ul>
+                            <li>May affect trade between Member States</li>
+                            <li>Have as their <strong>object or effect</strong> the prevention, restriction, or distortion of COMPETITION</li>
+                        </ul>
+                    </div>
+                `
+            },
+            {
+                title: '📝 Forms of Cartels',
+                content: `
+                    <h4>Can You Form a Cartel Without Communication?</h4>
+                    <div class="key-point">
+                        <strong>YES!</strong> Through:
+                    </div>
+                    <ul>
+                        <li>✍️ Written agreements</li>
+                        <li>🗣️ Oral agreements</li>
+                        <li>💬 Informal statements</li>
+                        <li>🤐 Concerted practices</li>
+                        <li>📊 Information exchange</li>
+                        <li>🤖 Algorithmic coordination</li>
+                    </ul>
+                    <div class="case-box">
+                        <strong>ETURAS Case:</strong> Travel agencies coordinated through a booking system without direct communication = CARTEL!
+                    </div>
+                `
+            },
+            {
+                title: '↔️ Cartel vs Parallel Behavior',
+                content: `
+                    <h4>Key Distinction</h4>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Definition</th>
+                            <th>Legal Status</th>
+                        </tr>
+                        <tr>
+                            <td><strong>CARTEL</strong></td>
+                            <td>Coordinated action through agreement</td>
+                            <td>❌ PROHIBITED</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PARALLEL BEHAVIOR</strong></td>
+                            <td>Independent decisions, similar outcomes</td>
+                            <td>✅ LEGAL</td>
+                        </tr>
+                    </table>
+                    <div class="example-box">
+                        <strong>Wood Pulp II Case:</strong> All producers raised prices similarly due to increased costs = LEGAL parallel behavior
+                    </div>
+                `
+            },
+            {
+                title: '📦 Selective Distribution',
+                content: `
+                    <h4>When is it NOT a Cartel?</h4>
+                    <div class="key-point">
+                        Selective distribution is allowed when:
+                    </div>
+                    <ol>
+                        <li>Goods need specialized service (watches, electronics)</li>
+                        <li>Luxury goods requiring brand image protection</li>
+                        <li>Criteria are <strong>OPEN, TRANSPARENT, NON-DISCRIMINATORY</strong></li>
+                        <li>Restrictions necessary to maintain product prestige</li>
+                    </ol>
+                    <div class="case-box">
+                        <strong>L'Oréal Case:</strong> Selective distribution justified for luxury cosmetics
+                    </div>
+                    <h4>De Minimis Exemption</h4>
+                    <p>• Horizontal: < 5% market share</p>
+                    <p>• Vertical: < 10% market share</p>
+                    <p>⚠️ Does NOT apply to price-fixing or market-sharing!</p>
+                `
+            }
+        ]
+    },
+    dominant_position: {
+        sections: [
+            {
+                title: '👑 Understanding Dominance',
+                content: `
+                    <h4>Is Having Dominance Prohibited?</h4>
+                    <div class="key-point">
+                        ❌ <strong>NO!</strong> Having a dominant position is NOT prohibited.<br>
+                        ✅ Only the <strong>ABUSE</strong> of dominant position is prohibited (Article 102 TFEU)
+                    </div>
+                    <h4>Measuring Dominance</h4>
+                    <p><strong>Market share > 40%</strong> creates a <strong>PRESUMPTION</strong> (not certainty!) of dominance</p>
+                    <p>Must also analyze:</p>
+                    <ul>
+                        <li>Technology advantages</li>
+                        <li>Entry barriers</li>
+                        <li>Vertical integration</li>
+                        <li>Access to raw materials</li>
+                    </ul>
+                    <div class="info-box">
+                        ✅ Even small companies can be dominant in niche markets!
+                    </div>
+                `
+            },
+            {
+                title: '🎯 The Relevant Market',
+                content: `
+                    <h4>Three Elements</h4>
+                    <div class="numbered-list">
+                        <div class="list-item">
+                            <strong>1. PRODUCT MARKET</strong>
+                            <p>Products that are substitutes for each other</p>
+                            <p><em>Example: Are bananas substitutes for other fruits? (United Brands case)</em></p>
+                        </div>
+                        <div class="list-item">
+                            <strong>2. TERRITORIAL/GEOGRAPHIC MARKET</strong>
+                            <p>Area where conditions of competition are homogeneous</p>
+                            <p><em>Criteria: consumer habits, transportation costs, entry barriers</em></p>
+                        </div>
+                        <div class="list-item">
+                            <strong>3. TIME FRAMEWORK</strong>
+                            <p>Period for assessment</p>
+                            <p><em>Seasonal variations, market fluctuations, economic crises</em></p>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                title: '⚠️ Types of Abuse',
+                content: `
+                    <h4>Common Examples</h4>
+                    <ul class="abuse-list">
+                        <li><strong>Unfair pricing</strong> - Imposing unfair purchase/selling prices</li>
+                        <li><strong>Limiting production</strong> - To prejudice consumers</li>
+                        <li><strong>Discriminatory conditions</strong> - Different terms for equivalent transactions</li>
+                        <li><strong>Tied transactions</strong> - Requiring unrelated purchases</li>
+                        <li><strong>Loyalty rebates</strong> - Rewarding exclusivity to foreclose competitors</li>
+                        <li><strong>Refusal to deal</strong> - Especially with essential facilities</li>
+                        <li><strong>Predatory pricing</strong> - Below-cost pricing to eliminate competitors</li>
+                    </ul>
+                `
+            },
+            {
+                title: '📱 Real Cases',
+                content: `
+                    <h4>Google Shopping Case</h4>
+                    <div class="case-box">
+                        <strong>Abuse:</strong>
+                        <ol>
+                            <li><strong>Self-preferencing</strong> - Promoting own service</li>
+                            <li><strong>Demoting competitors</strong> - Lowering rivals in search results</li>
+                            <li><strong>Leveraging dominance</strong> - Using search power for shopping</li>
+                        </ol>
+                        <strong>Fine:</strong> €2.42 billion
+                    </div>
+                    <h4>British Airways Loyalty Rebates</h4>
+                    <div class="case-box">
+                        BA offered rebates on ALL tickets (not just additional ones) when targets met
+                        <br><br>
+                        <strong>Result:</strong> Foreclosed competitors from the market
+                    </div>
+                `
+            }
+        ]
+    },
+    company_law: {
+        sections: [
+            {
+                title: '🏢 Business Entities',
+                content: `
+                    <h4>Sole Proprietorship vs Joint-Stock Company</h4>
+                    <table>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Sole Proprietorship</th>
+                            <th>Joint-Stock Company</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Liability</strong></td>
+                            <td>UNLIMITED - all personal property</td>
+                            <td>LIMITED - only value of shares</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Registration</strong></td>
+                            <td>CEIDG</td>
+                            <td>KRS</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Min Capital</strong></td>
+                            <td>None</td>
+                            <td>100,000 PLN</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Legal Separation</strong></td>
+                            <td>❌ Owner = business</td>
+                            <td>✅ Separate legal person</td>
+                        </tr>
+                    </table>
+                `
+            },
+            {
+                title: '📊 JSC Structure',
+                content: `
+                    <h4>Three Authorities</h4>
+                    <div class="authority-box">
+                        <strong>1. GENERAL ASSEMBLY (Shareholders)</strong>
+                        <p>Supreme body, makes major decisions</p>
+                    </div>
+                    <div class="authority-box">
+                        <strong>2. MANAGEMENT BOARD</strong>
+                        <p>Manages company, represents externally</p>
+                        <p>✍️ To sign contract: <strong>2 MB members</strong> OR <strong>1 MB + 1 proxy</strong></p>
+                    </div>
+                    <div class="authority-box">
+                        <strong>3. SUPERVISORY BOARD</strong>
+                        <p>Oversees management board</p>
+                        <p>❌ Should NOT interfere in day-to-day business</p>
+                    </div>
+                `
+            },
+            {
+                title: '📈 Shares',
+                content: `
+                    <h4>Types of Shares</h4>
+                    <ul>
+                        <li><strong>Registered shares</strong> - Owner's name, can be issued before full payment</li>
+                        <li><strong>Bearer shares</strong> - Anonymous, must be fully paid first</li>
+                        <li><strong>Preferred shares</strong> - Voting, dividend, or liquidation preferences</li>
+                    </ul>
+                    <div class="key-point">
+                        Only <strong>REGISTERED</strong> shares can be preferred!
+                    </div>
+                    <h4>Why "Negotiable Instruments"?</h4>
+                    <p>Because shares can be:</p>
+                    <ul>
+                        <li>📊 TRADED (bought, sold)</li>
+                        <li>🔒 PAWNED (used as collateral)</li>
+                        <li>🏦 SECURITY for loans</li>
+                    </ul>
+                `
+            },
+            {
+                title: '💰 Profit & Rights',
+                content: `
+                    <h4>Profit Distribution</h4>
+                    <div class="key-point">
+                        Profit is determined <strong>PER SHARE</strong>, not per person
+                        <br><br>
+                        More shares = More dividends
+                    </div>
+                    <h4>Squeeze-Out</h4>
+                    <p><strong>Can minority shareholders be expropriated?</strong></p>
+                    <p>✅ YES, if:</p>
+                    <ol>
+                        <li>Majority holds ≥95% of share capital</li>
+                        <li>Must pay FAIR PRICE (expert valuation)</li>
+                        <li>General assembly resolution required</li>
+                        <li>Minority can challenge price in court</li>
+                    </ol>
+                `
             }
         ]
     }
